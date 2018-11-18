@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hollydroid</string>
+    <string name="title">Title:</string>
+    <string name="search">Search</string>
+    <string name="movie">Movie:</string>
+    <string name="year">Year:</string>
+    <string name="genre">Genre:</string>
+    <string name="actors">Actors:</string>
+</resources>
