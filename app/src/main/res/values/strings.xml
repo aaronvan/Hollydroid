@@ -2,8 +2,9 @@
     <string name="app_name">Hollydroid Movie Finder</string>
     <string name="title">Title:</string>
     <string name="search">Search</string>
-    <string name="movie">Movie:</string>
-    <string name="year">Year:</string>
-    <string name="genre">Genre:</string>
-    <string name="actors">Actors:</string>
+    <string name="movie">Movie</string>
+    <string name="year">Year</string>
+    <string name="genre">Genre</string>
+    <string name="actors">Actors</string>
+    <string name="enter_movie_title">Enter movie title</string>
 </resources>
