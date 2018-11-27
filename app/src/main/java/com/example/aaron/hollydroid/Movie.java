@@ -4,7 +4,6 @@ public class Movie {
     private String Title;
     private String Year;
     private String Genre;
-    private String Director;
     private String Actors;
 
     public static String getAPISearchString(String str) {
@@ -23,10 +22,6 @@ public class Movie {
         return Genre;
     }
 
-    public String getDirector() {
-        return Director;
-    }
-
     public String getActors() {
         return Actors;
     }
@@ -37,7 +32,6 @@ public class Movie {
                 "Title='" + Title + '\'' +
                 ", Year='" + Year + '\'' +
                 ", Genre='" + Genre + '\'' +
-                ", Director='" + Director + '\'' +
                 ", Actors='" + Actors + '\'' +
                 '}';
     }
