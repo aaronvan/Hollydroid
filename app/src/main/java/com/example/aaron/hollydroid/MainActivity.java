@@ -48,15 +48,13 @@ public class MainActivity extends Activity {
         textViewGenreLabel = (TextView) findViewById(R.id.textViewGenreLabel);
         textViewActorsLabel = (TextView) findViewById(R.id.textViewActorsLabel);
 
-        final File movieDataFile = new File("sampledata/files/data.json");
-
         //set the listener
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                File movieDataFile = new File("sampledata/files/data.json");
                 movieTitle = editTextMovieName.getText().toString();
                 dataSource = Movie.getAPISearchString(movieTitle);
-                //textViewMovieLabel.setText(dataSource);
 
                 try {
                     url = new URL(dataSource);
