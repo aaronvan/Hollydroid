@@ -24,16 +24,17 @@ public class MainActivity extends Activity {
 
     //define variables for the widgets
     private EditText editTextMovieName;
-    private Button   buttonSearch;
+    private Button searchButton;
     private TextView textViewMovieLabel;
     private TextView textViewYearLabel;
     private TextView textViewGenreLabel;
     private TextView textViewActorsLabel;
 
-    //initialize variables
+    //initialize other variables snd stuff
     String movieTitle, dataSource;
     URLConnection urlCon;
     URL url;
+    File movieDataFile = new File("sampledata/files/data.json");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +43,18 @@ public class MainActivity extends Activity {
 
         //get references to the widgets
         editTextMovieName = (EditText) findViewById(R.id.editTextMovieName);
-        buttonSearch = (Button) findViewById(R.id.buttonSearch);
+        searchButton = (Button) findViewById(R.id.buttonSearch);
         textViewMovieLabel = (TextView) findViewById(R.id.textViewMovieLabel);
         textViewYearLabel = (TextView) findViewById(R.id.textViewYearLabel);
         textViewGenreLabel = (TextView) findViewById(R.id.textViewGenreLabel);
         textViewActorsLabel = (TextView) findViewById(R.id.textViewActorsLabel);
 
         //set the listener
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File movieDataFile = new File("sampledata/files/data.json");
                 movieTitle = editTextMovieName.getText().toString();
                 dataSource = Movie.getAPISearchString(movieTitle);
-
                 try {
                     url = new URL(dataSource);
                     urlCon = url.openConnection();
