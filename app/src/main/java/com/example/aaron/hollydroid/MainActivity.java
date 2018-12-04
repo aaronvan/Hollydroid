@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
     String movieTitle, dataSource;
     URLConnection urlCon;
     URL url;
+    // create a temp file to store the movie data
     File movieDataFile = new File("sampledata/files/data.json");
 
     @Override
@@ -56,7 +57,10 @@ public class MainActivity extends Activity {
                 movieTitle = editTextMovieName.getText().toString();
                 dataSource = Movie.getAPISearchString(movieTitle);
                 try {
+                    // Creates a URL object from the dataSource string
                     url = new URL(dataSource);
+                    // Creates an instance of a URLConnection that represents
+                    // a connection to the URL url object
                     urlCon = url.openConnection();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -84,13 +88,12 @@ public class MainActivity extends Activity {
                     textViewYearLabel.setText(movie.getYear());
                     textViewActorsLabel.setText(movie.getActors());
                     textViewGenreLabel.setText(movie.getGenre());
-                    //movieDataFile.delete();
+                    movieDataFile.delete();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }
