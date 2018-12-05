@@ -2,6 +2,7 @@ package com.example.aaron.hollydroid;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,13 +35,16 @@ public class MainActivity extends Activity {
     String movieTitle, dataSource;
     URLConnection urlCon;
     URL url;
-    // create a temp file to store the movie data
-    File movieDataFile = new File("sampledata/files/data.json");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // permit the app to get network access
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         //get references to the widgets
         editTextMovieName = (EditText) findViewById(R.id.editTextMovieName);
@@ -50,12 +54,20 @@ public class MainActivity extends Activity {
         textViewGenreLabel = (TextView) findViewById(R.id.textViewGenreLabel);
         textViewActorsLabel = (TextView) findViewById(R.id.textViewActorsLabel);
 
-        //set the listener
+        //set the OnClickListener interface
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // creates a temp file to store the movie data
+                File movieDataFile = null;
+                try {
+                    movieDataFile = File.createTempFile("data", "json");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 movieTitle = editTextMovieName.getText().toString();
                 dataSource = Movie.getAPISearchString(movieTitle);
+
                 try {
                     // Creates a URL object from the dataSource string
                     url = new URL(dataSource);
@@ -88,7 +100,6 @@ public class MainActivity extends Activity {
                     textViewYearLabel.setText(movie.getYear());
                     textViewActorsLabel.setText(movie.getActors());
                     textViewGenreLabel.setText(movie.getGenre());
-                    movieDataFile.delete();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
