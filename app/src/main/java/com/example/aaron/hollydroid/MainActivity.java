@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
 
     //define variables for the widgets
     private EditText editTextMovieName;
-    private Button searchButton;
     private TextView textViewMovieLabel;
     private TextView textViewYearLabel;
     private TextView textViewGenreLabel;
@@ -48,7 +47,7 @@ public class MainActivity extends Activity {
 
         //get references to the widgets
         editTextMovieName = (EditText) findViewById(R.id.editTextMovieName);
-        searchButton = (Button) findViewById(R.id.buttonSearch);
+        Button searchButton = (Button) findViewById(R.id.buttonSearch);
         textViewMovieLabel = (TextView) findViewById(R.id.textViewMovieLabel);
         textViewYearLabel = (TextView) findViewById(R.id.textViewYearLabel);
         textViewGenreLabel = (TextView) findViewById(R.id.textViewGenreLabel);
@@ -100,8 +99,6 @@ public class MainActivity extends Activity {
                     textViewYearLabel.setText(movie.getYear());
                     textViewActorsLabel.setText(movie.getActors());
                     textViewGenreLabel.setText(movie.getGenre());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
