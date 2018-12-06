@@ -1,5 +1,11 @@
 package com.example.aaron.hollydroid;
 
+/**
+ * Returns a Movie object that can be parsed and the information
+ * displayed to the user.
+ * @author avanalstine
+ * @version 1.0
+ */
 public class Movie {
     private String Title;
     private String Year;
@@ -7,6 +13,11 @@ public class Movie {
     private String Actors;
     private String Plot;
 
+    /**
+     * This method generates a URL that incorporates the movie title.
+     * @param str
+     * @return a URL formatted for the API.
+     */
     public static String getAPISearchString(String str) {
         return "https://www.omdbapi.com/?t=" + str.replaceAll("\\s", "+") + "&apikey=e88d2fb1";
     }

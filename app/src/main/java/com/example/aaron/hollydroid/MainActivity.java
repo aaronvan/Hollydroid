@@ -61,13 +61,16 @@ public class MainActivity extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Hides the keyboard after the user clicks
-                // the search button
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                // Hides the keyboard after the user
+                //  clicks the search button
+                try {
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
 
                 // Creates a temp file for the movie data
                 File movieDataFile = null;
@@ -104,7 +107,8 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                //deserialize the JSON data and display it for the user
+                // Deserializes the JSON data to a Movie object
+                // and display the information to the user
                 Gson gson = new Gson();
                 try (FileReader fileReader = new FileReader(movieDataFile);
                      JsonReader jsonReader = new JsonReader(fileReader))
