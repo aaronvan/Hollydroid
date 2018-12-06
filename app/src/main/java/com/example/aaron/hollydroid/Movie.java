@@ -1,11 +1,12 @@
 package com.example.aaron.hollydroid;
 
 /**
- * Returns a Movie object that can be parsed and the information
+ * Return a Movie object that can be parsed and the information
  * displayed to the user.
  * @author avanalstine
  * @version 1.0
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Movie {
     private String Title;
     private String Year;
@@ -14,8 +15,8 @@ public class Movie {
     private String Plot;
 
     /**
-     * This method generates a URL that incorporates the movie title.
-     * @param str
+     * Generate a URL that incorporates the movie title.
+     * @param str the title of the movie
      * @return a URL formatted for the API.
      */
     public static String getAPISearchString(String str) {

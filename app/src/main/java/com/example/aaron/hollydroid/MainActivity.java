@@ -11,12 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -61,8 +59,8 @@ public class MainActivity extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Hides the keyboard after the user
-                //  clicks the search button
+                // Hide the keyboard after the user
+                // clicks the search button
                 try {
                     InputMethodManager inputManager = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -72,7 +70,7 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                // Creates a temp file for the movie data
+                // Create a temp file for the movie data
                 File movieDataFile = null;
                 try {
                     movieDataFile = File.createTempFile("data", "json");
@@ -81,13 +79,13 @@ public class MainActivity extends Activity {
                 }
                 movieTitle = editTextMovieName.getText().toString();
                 dataSource = Movie.getAPISearchString(movieTitle);
-                editTextMovieName.setText(""); // clear for the next search
+                editTextMovieName.setText(""); // clear movie name for the next search
 
                 // Get an Internet connection to the database
                 try {
-                    // Creates a URL object from the dataSource string
+                    // Create a URL object from the dataSource string
                     url = new URL(dataSource);
-                    // Creates an instance of a URLConnection that represents
+                    // Create an instance of a URLConnection that represents
                     // a connection to the URL url object
                     urlCon = url.openConnection();
                 } catch (IOException e) {
@@ -107,7 +105,7 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                // Deserializes the JSON data to a Movie object
+                // Deserialize the JSON data to a Movie object
                 // and display the information to the user
                 Gson gson = new Gson();
                 try (FileReader fileReader = new FileReader(movieDataFile);
