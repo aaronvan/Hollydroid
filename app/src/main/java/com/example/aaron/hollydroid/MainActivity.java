@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
     private TextView textViewGenreLabel;
     private TextView textViewActorsLabel;
 
-    //initialize other variables snd stuff
+    //initialize variables and stuff
     String movieTitle, dataSource;
     URLConnection urlCon;
     URL url;
