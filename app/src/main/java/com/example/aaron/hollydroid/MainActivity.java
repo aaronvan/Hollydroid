@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
     URLConnection urlCon;
     URL url;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
