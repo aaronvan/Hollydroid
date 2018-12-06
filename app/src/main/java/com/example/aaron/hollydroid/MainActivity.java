@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity {
     private TextView textViewYearLabel;
     private TextView textViewGenreLabel;
     private TextView textViewActorsLabel;
+    private TextView textViewPlotLabel;
 
     //initialize variables and stuff
     String movieTitle, dataSource;
@@ -46,17 +48,18 @@ public class MainActivity extends Activity {
 
         //get references to the widgets
         editTextMovieName = (EditText) findViewById(R.id.editTextMovieName);
-        Button searchButton = (Button) findViewById(R.id.buttonSearch);
+        final Button searchButton = (Button) findViewById(R.id.buttonSearch);
         textViewMovieLabel = (TextView) findViewById(R.id.textViewMovieLabel);
         textViewYearLabel = (TextView) findViewById(R.id.textViewYearLabel);
         textViewGenreLabel = (TextView) findViewById(R.id.textViewGenreLabel);
         textViewActorsLabel = (TextView) findViewById(R.id.textViewActorsLabel);
+        textViewPlotLabel = (TextView) findViewById(R.id.textViewPlotLabel);
 
         //set the OnClickListener interface
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // creates a temp file to store the movie data
+                // Creates a temp file for the movie data
                 File movieDataFile = null;
                 try {
                     movieDataFile = File.createTempFile("data", "json");
@@ -65,6 +68,7 @@ public class MainActivity extends Activity {
                 }
                 movieTitle = editTextMovieName.getText().toString();
                 dataSource = Movie.getAPISearchString(movieTitle);
+                editTextMovieName.setText(""); // clear for the next search
 
                 try {
                     // Creates a URL object from the dataSource string
@@ -98,6 +102,7 @@ public class MainActivity extends Activity {
                     textViewYearLabel.setText(movie.getYear());
                     textViewActorsLabel.setText(movie.getActors());
                     textViewGenreLabel.setText(movie.getGenre());
+                    textViewPlotLabel.setText(movie.getPlot());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
