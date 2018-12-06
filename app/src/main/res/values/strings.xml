@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hollydroid Movie Finder</string>
+    <string name="app_name">Hollydroid Movie Database</string>
     <string name="search">Get Movie Data</string>
     <string name="movie">Movie</string>
     <string name="year">Year</string>

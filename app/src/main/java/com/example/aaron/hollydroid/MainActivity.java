@@ -1,9 +1,11 @@
 package com.example.aaron.hollydroid;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -59,6 +61,14 @@ public class MainActivity extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Hides the keyboard after the user clicks
+                // the search button
+                InputMethodManager inputManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+
                 // Creates a temp file for the movie data
                 File movieDataFile = null;
                 try {
@@ -70,6 +80,7 @@ public class MainActivity extends Activity {
                 dataSource = Movie.getAPISearchString(movieTitle);
                 editTextMovieName.setText(""); // clear for the next search
 
+                // Get an Internet connection to the database
                 try {
                     // Creates a URL object from the dataSource string
                     url = new URL(dataSource);
@@ -93,6 +104,7 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
+                //deserialize the JSON data and display it for the user
                 Gson gson = new Gson();
                 try (FileReader fileReader = new FileReader(movieDataFile);
                      JsonReader jsonReader = new JsonReader(fileReader))
@@ -109,6 +121,4 @@ public class MainActivity extends Activity {
             }
         });
     }
-
-
 }
